@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
@@ -66,6 +67,11 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Gacha covid-19 vaccines - Thailand</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+
       {state === "WAIT" && (
         <div className={styles.content}>
           <h1>
