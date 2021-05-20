@@ -68,8 +68,17 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Gacha covid-19 vaccines - Thailand</title>
+        <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          property="og:title"
+          content="When Great Minds Don’t Think Alike"
+        />
+        <meta
+          property="og:description"
+          content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
+        />
+        <meta property="og:image" content="/og-image.png" />
       </Head>
 
       {state === "WAIT" && (
