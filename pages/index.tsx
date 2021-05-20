@@ -80,6 +80,7 @@ export default function Home() {
         />
         <meta name="twitter:card" content="summary" />
         <meta property="og:image" content="/og-image.png" />
+        <meta name="twitter:image" content="/og-image.png" />
       </Head>
 
       {state === "WAIT" && (
