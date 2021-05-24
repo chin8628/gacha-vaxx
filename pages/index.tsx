@@ -55,27 +55,7 @@ function generateShareURI(host: string, vaxxParam: string) {
   return `https://${host}?v=${vaxxParam}`;
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  let ogImage = "/og-image.png";
-
-  if (context.query.v === VACCINES[0].md5) {
-    ogImage = VACCINES[0].cover;
-  } else if (context.query.v === VACCINES[1].md5) {
-    ogImage = VACCINES[1].cover;
-  }
-
-  return {
-    props: {
-      ogImage,
-    },
-  };
-};
-
-type Props = {
-  ogImage: string;
-};
-
-export default function Home({ ogImage }: Props) {
+export default function Home() {
   const [state, setState] = useState("WELCOME");
   const [vac, setVac] = useState<Vaccine | null>(null);
 
@@ -105,9 +85,9 @@ export default function Home({ ogImage }: Props) {
         property="og:description"
         content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
       />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content="/og-image.png" />
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content="/og-image.png" />
 
       {state === "WAIT" && (
         <div className={styles.content}>
