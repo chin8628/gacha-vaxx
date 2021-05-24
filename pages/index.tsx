@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 import styles from "styles/Home.module.css";
 import ShareBtnGroup from "components/ShareBtnGroup/index";
@@ -55,10 +55,29 @@ function generateShareURI(host: string, vaxxParam: string) {
   return `https://${host}?v=${vaxxParam}`;
 }
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let ogImage = "/og-image.png";
+
+  if (context.query.v === VACCINES[0].md5) {
+    ogImage = VACCINES[0].cover;
+  } else if (context.query.v === VACCINES[1].md5) {
+    ogImage = VACCINES[1].cover;
+  }
+
+  return {
+    props: {
+      ogImage,
+    },
+  };
+};
+
+type Props = {
+  ogImage: string;
+};
+
+export default function Home({ ogImage }: Props) {
   const [state, setState] = useState("WELCOME");
   const [vac, setVac] = useState<Vaccine | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     let randomVac = getRandomVac();
@@ -75,16 +94,6 @@ export default function Home() {
     rememberEngage();
   };
 
-  const getMetaCover = () => {
-    if (router.query.v === VACCINES[0].md5) {
-      return VACCINES[0].cover;
-    } else if (router.query.v === VACCINES[1].md5) {
-      return VACCINES[1].cover;
-    }
-
-    return "/og-image.png";
-  };
-
   return (
     <div className={styles.container}>
       <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
@@ -96,9 +105,9 @@ export default function Home() {
         property="og:description"
         content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
       />
-      <meta property="og:image" content={getMetaCover()} />
+      <meta property="og:image" content={ogImage} />
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:image" content={getMetaCover()} />
+      <meta name="twitter:image" content={ogImage} />
 
       {state === "WAIT" && (
         <div className={styles.content}>

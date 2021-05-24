@@ -8,20 +8,15 @@ function ShareBtnGroup({ url }: Props) {
   return (
     <div className={styles.center}>
       <h2>อวดให้เพื่อนรู้สิว่าคุณได้วัคซีนแล้ว</h2>
-      <div
-        className="fb-share-button"
-        data-href="https://gacha-vaxx.vercel.app"
-        data-layout="button_count"
-        data-size="large"
-      >
-        <a
-          target="_blank"
-          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURI(url)};src=sdkpreparse`}
-          className="fb-xfbml-parse-ignore"
-        >
-          Share To Facebook
-        </a>
-      </div>
+      <iframe
+        src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&width=96&height=20&appId"
+        width="96"
+        height="20"
+        scrolling="no"
+        frameBorder="0"
+        allowFullScreen={false}
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      ></iframe>
     </div>
   );
 }
