@@ -25,10 +25,6 @@ type Props = {
 };
 
 export default function Home({ ogImage }: Props) {
-  useEffect(() => {
-    window.location.href = "/";
-  }, []);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -44,7 +40,7 @@ export default function Home({ ogImage }: Props) {
         <meta property="og:image" content={ogImage} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:image" content={ogImage} />
-        redirecting...
+        <a href="/">Back to main page.</a>
       </Head>
     </div>
   );
