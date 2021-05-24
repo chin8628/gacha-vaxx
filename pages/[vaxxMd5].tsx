@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import styles from "styles/Home.module.css";
 import { VACCINES } from "../constansts";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let ogImage = "/og-image.png";
@@ -25,12 +26,17 @@ type Props = {
 };
 
 export default function Home({ ogImage }: Props) {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
       <Head>
         <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:url" content="https://gacha-vaxx.vercel.app" />
+        <meta
+          property="og:url"
+          content={`https://gacha-vaxx.vercel.app/${router.query.vaxxMd5}`}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="มาสุ่มกาชากันวัคซีนกันเถอะ" />
         <meta
