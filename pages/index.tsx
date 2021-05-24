@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "styles/Home.module.css";
-import ShareBtnGroup from "components/ShareBtnGroup";
+import ShareBtnGroup from "components/ShareBtnGroup/index";
 
 type Vaccine = { label: string; photoUrl: string; cover: string; md5: string };
 
