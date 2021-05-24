@@ -28,8 +28,12 @@ type Props = {
 export default function Home({ ogImage }: Props) {
   const router = useRouter();
 
+  useEffect(() => {
+    window.location.href = "/";
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.content}>
       <Head>
         <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -46,7 +50,7 @@ export default function Home({ ogImage }: Props) {
         <meta property="og:image" content={ogImage} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:image" content={ogImage} />
-        <a href="/">Back to main page.</a>
+        redirecting...
       </Head>
     </div>
   );
