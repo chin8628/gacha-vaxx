@@ -1,18 +1,24 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import ShareBtnGroup from "../components/ShareBtnGroup";
 
-type Vaccine = { label: string; photoUrl: string };
+type Vaccine = { label: string; photoUrl: string; cover: string; md5: string };
 
 const VACCINES: Vaccine[] = [
   {
     label: "Astrazeneca",
     photoUrl: "/az.png",
+    cover: "/congrat-az.png",
+    md5: "cc8c0a97c2dfcd73caff160b65aa39e2",
   },
   {
     label: "Sinovac",
     photoUrl: "/sinovac.png",
+    cover: "/congrat-sin.png",
+    md5: "00eb66149812aca535dd2f06e0562014",
   },
 ];
 
@@ -46,9 +52,14 @@ function shouldWaitLonger() {
   return minutes < 10 ? true : false;
 }
 
+function generateShareURI(host: string, vaxxParam: string) {
+  return `https://${host}v?=${vaxxParam}`
+}
+
 export default function Home() {
   const [state, setState] = useState("WELCOME");
   const [vac, setVac] = useState<Vaccine | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     let randomVac = getRandomVac();
@@ -65,23 +76,30 @@ export default function Home() {
     rememberEngage();
   };
 
+  const getMetaCover = () => {
+    if (router.query.v === VACCINES[0].md5) {
+      return VACCINES[0].cover;
+    } else if (router.query.v === VACCINES[1].md5) {
+      return VACCINES[1].cover;
+    }
+
+    return "/og-image.png";
+  };
+
   return (
     <div className={styles.container}>
-      <Head>
-        <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          property="og:title"
-          content="When Great Minds Don’t Think Alike"
-        />
-        <meta
-          property="og:description"
-          content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
-        />
-        <meta name="twitter:card" content="summary" />
-        <meta property="og:image" content="/og-image.png" />
-        <meta name="twitter:image" content="/og-image.png" />
-      </Head>
+      <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta property="og:url" content="https://gacha-vaxx.vercel.app" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="มาสุ่มกาชากันวัคซีนกันเถอะ" />
+      <meta
+        property="og:description"
+        content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
+      />
+      <meta property="og:image" content={getMetaCover()} />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:image" content={getMetaCover()} />
 
       {state === "WAIT" && (
         <div className={styles.content}>
@@ -110,6 +128,7 @@ export default function Home() {
               height="256"
             />
           </div>
+          <ShareBtnGroup url={generateShareURI(window.location.hostname, vac.md5)} />
         </div>
       )}
     </div>
