@@ -52,7 +52,7 @@ function shouldWaitLonger() {
 }
 
 function generateShareURI(host: string, vaxxParam: string) {
-  return `https://${host}v?=${vaxxParam}`;
+  return `https://${host}?v=${vaxxParam}`;
 }
 
 export default function Home() {
