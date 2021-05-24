@@ -18,7 +18,7 @@ function ShareBtnGroup({ url }: Props) {
           target="_blank"
           href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURI(
             url
-          )};src=sdkpreparse`}
+          )}`}
           className="fb-xfbml-parse-ignore"
         >
           Share To Facebook
