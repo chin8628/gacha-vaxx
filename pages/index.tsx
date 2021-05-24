@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import ShareBtnGroup from "../components/ShareBtnGroup";
+import styles from "styles/Home.module.css";
+import ShareBtnGroup from "components/ShareBtnGroup";
 
 type Vaccine = { label: string; photoUrl: string; cover: string; md5: string };
 
@@ -53,7 +52,7 @@ function shouldWaitLonger() {
 }
 
 function generateShareURI(host: string, vaxxParam: string) {
-  return `https://${host}v?=${vaxxParam}`
+  return `https://${host}v?=${vaxxParam}`;
 }
 
 export default function Home() {
@@ -128,7 +127,9 @@ export default function Home() {
               height="256"
             />
           </div>
-          <ShareBtnGroup url={generateShareURI(window.location.hostname, vac.md5)} />
+          <ShareBtnGroup
+            url={generateShareURI(window.location.hostname, vac.md5)}
+          />
         </div>
       )}
     </div>
