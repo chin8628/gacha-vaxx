@@ -1,9 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Kanit", sans-serif;
+  background-color: #98c1d9;
 }
 
 * {
@@ -11,5 +17,16 @@ body {
 }
 
 h1 {
-  text-align: center;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #3b82f6;
+  text-decoration: none;
 }
