@@ -5,6 +5,12 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-JJCHZV7TM4"

@@ -12,6 +12,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ogImage = VACCINES[0].cover;
   } else if (context.query.vaxxMd5 === VACCINES[1].md5) {
     ogImage = VACCINES[1].cover;
+  } else {
+    ogImage = VACCINES[2].cover;
   }
 
   return {
@@ -35,8 +37,6 @@ export default function Home({ ogImage }: Props) {
   return (
     <div className={styles.content}>
       <Head>
-        <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           property="og:url"
           content={`https://gacha-vaxx.vercel.app/${router.query.vaxxMd5}`}
@@ -48,9 +48,13 @@ export default function Home({ ogImage }: Props) {
           content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
         />
         <meta property="og:image" content={ogImage} />
-        <meta name="twitter:card" content="summary" />
+
+        <meta
+          name="twitter:content"
+          content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImage} />
-        redirecting...
       </Head>
     </div>
   );

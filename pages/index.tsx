@@ -3,29 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "styles/Home.module.css";
 import ShareBtnGroup from "components/ShareBtnGroup/index";
+import { VACCINES } from "../constansts";
 
 type Vaccine = { label: string; photoUrl: string; cover: string; md5: string };
-
-const VACCINES: Vaccine[] = [
-  {
-    label: "Astrazeneca",
-    photoUrl: "/az.png",
-    cover: "/congrat-az.png",
-    md5: "cc8c0a97c2dfcd73caff160b65aa39e2",
-  },
-  {
-    label: "Sinovac",
-    photoUrl: "/sinovac.png",
-    cover: "/congrat-sin.png",
-    md5: "00eb66149812aca535dd2f06e0562014",
-  },
-  {
-    label: "Pfizer (SSR Rank)",
-    photoUrl: "/pfizer.png",
-    cover: "/congrat-pfizer.png",
-    md5: "05a203d85ee01909eaf728dc16f0f6cb",
-  },
-];
 
 function getProbability(precision = 2) {
   return parseFloat((Math.random() * 100).toFixed(precision));
@@ -89,8 +69,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>มาสุ่มกาชากันวัคซีนกันเถอะ</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:url" content="https://gacha-vaxx.vercel.app" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="มาสุ่มกาชากันวัคซีนกันเถอะ" />
@@ -99,9 +77,9 @@ export default function Home() {
           content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
         />
         <meta property="og:image" content="/og-image.png" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="/og-image.png" />
       </Head>
+
+      <div className="fireworks"></div>
 
       {state === "WAIT" && (
         <div className={styles.content}>
@@ -134,22 +112,33 @@ export default function Home() {
 
       {state === "RESULT" && vac != null && (
         <div className={styles.content}>
-          <div className="border-4 border-black rounded flex flex-col items-center py-5 my-8">
-            <h1 className="text-4xl font-bold text-center py-3">
-              ยินดีด้วยจ้า!!!
-            </h1>
-            <div className="mx-20">
+          {vac.label === "Pfizer (SSR Rank)" ? (
+            <div className="my-8">
               <Image
-                src={vac.photoUrl}
+                src={vac.cover}
                 alt="covid-19 vaccine logo"
-                width="256"
-                height="256"
+                width="1000"
+                height="500"
               />
             </div>
-            <h2 className="text-2xl text-center py-3">
-              คุณสุ่มได้ {vac.label}
-            </h2>
-          </div>
+          ) : (
+            <div className="border-4 border-black rounded flex flex-col items-center py-5 my-8">
+              <h1 className="text-4xl font-bold text-center py-3">
+                ยินดีด้วยจ้า!!!
+              </h1>
+              <div className="mx-20">
+                <Image
+                  src={vac.photoUrl}
+                  alt="covid-19 vaccine logo"
+                  width="256"
+                  height="256"
+                />
+              </div>
+              <h2 className="text-2xl text-center py-3">
+                คุณสุ่มได้ {vac.label}
+              </h2>
+            </div>
+          )}
           <ShareBtnGroup
             url={generateShareURI(window.location.hostname, vac.md5)}
           />
