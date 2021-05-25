@@ -19,14 +19,26 @@ const VACCINES: Vaccine[] = [
     cover: "/congrat-sin.png",
     md5: "00eb66149812aca535dd2f06e0562014",
   },
+  {
+    label: "Pfizer (SSR Rank)",
+    photoUrl: "/pfizer.png",
+    cover: "/congrat-pfizer.png",
+    md5: "05a203d85ee01909eaf728dc16f0f6cb",
+  },
 ];
 
-function random() {
-  return Math.floor(Math.random() * 100);
+function getProbability(precision = 2) {
+  return parseFloat((Math.random() * 100).toFixed(precision));
 }
 
 function getRandomVac() {
-  return random() <= 20 ? VACCINES[0] : VACCINES[1];
+  if (getProbability() <= 0.1) {
+    return VACCINES[2];
+  } else if (getProbability() <= 80) {
+    return VACCINES[1];
+  } else {
+    return VACCINES[0];
+  }
 }
 
 function rememberEngage() {
@@ -48,7 +60,7 @@ function shouldWaitLonger() {
   let visitAtTimestamp = new Date(difference);
   let minutes = visitAtTimestamp.getMinutes();
   console.log(visitAt, minutes);
-  return minutes < 10 ? true : false;
+  return minutes < 1 ? true : false;
 }
 
 function generateShareURI(host: string, vaxxParam: string) {
@@ -107,7 +119,7 @@ export default function Home() {
 
       {state === "WELCOME" && (
         <div className={styles.content}>
-          <h1 className="text-4xl mb-7">
+          <h1 className="text-4xl mb-7 text-center">
             เปิดกาชา! ฉีดวัคซีน covid-19 ครั้งนี้ คุณจะได้ฉีดอะไร!?
           </h1>
           <button
@@ -122,14 +134,21 @@ export default function Home() {
 
       {state === "RESULT" && vac != null && (
         <div className={styles.content}>
-          <h1 className="text-4xl">ยินดีด้วย! คุณได้ฉีด {vac.label} 🥳 </h1>
-          <div>
-            <Image
-              src={vac.photoUrl}
-              alt="covid-19 vaccine logo"
-              width="256"
-              height="256"
-            />
+          <div className="border-4 border-black rounded flex flex-col items-center py-5 my-8">
+            <h1 className="text-4xl font-bold text-center py-3">
+              ยินดีด้วยจ้า!!!
+            </h1>
+            <div className="mx-20">
+              <Image
+                src={vac.photoUrl}
+                alt="covid-19 vaccine logo"
+                width="256"
+                height="256"
+              />
+            </div>
+            <h2 className="text-2xl text-center py-3">
+              คุณสุ่มได้ {vac.label}
+            </h2>
           </div>
           <ShareBtnGroup
             url={generateShareURI(window.location.hostname, vac.md5)}
