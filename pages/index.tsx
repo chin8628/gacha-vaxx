@@ -12,7 +12,7 @@ function getProbability(precision = 2) {
 }
 
 function getRandomVac() {
-  if (getProbability() <= 0.1) {
+  if (getProbability() <= 10) {
     return VACCINES[2];
   } else if (getProbability() <= 80) {
     return VACCINES[1];
@@ -50,10 +50,30 @@ function generateShareURI(host: string, vaxxParam: string) {
 export default function Home() {
   const [state, setState] = useState("WELCOME");
   const [vac, setVac] = useState<Vaccine | null>(null);
+  const [cheatKey, setChectKey] = useState("");
 
   useEffect(() => {
     let randomVac = getRandomVac();
     setVac(randomVac);
+
+    if (window) {
+      window.onkeydown = (ev: KeyboardEvent) => {
+        console.log(ev.code, cheatKey);
+        if (cheatKey + ev.code === "KeyPKeyFKeyIKeyZKeyEKeyR") {
+          setVac(VACCINES[2]);
+          return;
+        }
+
+        setChectKey((k) => {
+          console.log(k);
+          return `${k}${ev.code}`;
+        });
+      };
+    }
+
+    return () => {
+      window.onkeydown = null;
+    };
   }, []);
 
   const handleClick = () => {
