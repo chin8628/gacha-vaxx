@@ -39,7 +39,7 @@ function shouldWaitLonger() {
   let difference = Date.now() - Number.parseInt(visitAt);
   let visitAtTimestamp = new Date(difference);
   let minutes = visitAtTimestamp.getMinutes();
-  console.log(visitAt, minutes);
+
   return minutes < 1 ? true : false;
 }
 
@@ -68,12 +68,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    console.log(cheatKey);
     if (cheatKey === "KeyPKeyFKeyIKeyZKeyEKeyR") {
       setVac(VACCINES[2]);
       return;
     }
-  }, [cheatKey])
+  }, [cheatKey]);
 
   const handleClick = () => {
     if (shouldWaitLonger()) {
