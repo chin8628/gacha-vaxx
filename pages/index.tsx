@@ -95,7 +95,20 @@ export default function Home() {
           property="og:description"
           content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
         />
-        <meta property="og:image" content="https://gacha-vaxx.vercel.app/og-image.png" />
+        <meta
+          property="og:image"
+          content="https://gacha-vaxx.vercel.app/og-image.png"
+        />
+
+        <meta
+          name="twitter:title"
+          content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:image"
+          content="https://gacha-vaxx.vercel.app/og-image.png"
+        />
       </Head>
 
       <div className="fireworks"></div>
