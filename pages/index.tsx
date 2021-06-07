@@ -165,6 +165,16 @@ export default function Home() {
           </span>
         </div>
       )}
+      <p className={styles.footer}>
+        Made by chin8628 |
+        <a
+          href="https://github.com/chin8628/gacha-vaxx"
+          target="_blank"
+          className="px-1"
+        >
+          Github
+        </a>
+      </p>
     </div>
   );
 }
