@@ -58,16 +58,7 @@ export default function Home() {
 
     if (window) {
       window.onkeydown = (ev: KeyboardEvent) => {
-        console.log(ev.code, cheatKey);
-        if (cheatKey + ev.code === "KeyPKeyFKeyIKeyZKeyEKeyR") {
-          setVac(VACCINES[2]);
-          return;
-        }
-
-        setChectKey((k) => {
-          console.log(k);
-          return `${k}${ev.code}`;
-        });
+        setChectKey((k) => `${k}${ev.code}`);
       };
     }
 
@@ -75,6 +66,14 @@ export default function Home() {
       window.onkeydown = null;
     };
   }, []);
+
+  useEffect(() => {
+    console.log(cheatKey);
+    if (cheatKey === "KeyPKeyFKeyIKeyZKeyEKeyR") {
+      setVac(VACCINES[2]);
+      return;
+    }
+  }, [cheatKey])
 
   const handleClick = () => {
     if (shouldWaitLonger()) {
