@@ -1,6 +1,5 @@
 import {
   FacebookShareButton,
-  // LineShareButton,
   TwitterShareButton,
   TwitterIcon,
   FacebookIcon,
