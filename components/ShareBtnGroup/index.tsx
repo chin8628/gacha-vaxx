@@ -19,15 +19,11 @@ function ShareBtnGroup({ url, vac }: Props) {
     `ว๊าย ฉันสุ่มได้ ${vac.label} แล้วเธอละได้วัคซีนยัง? มาลองสุ่มกาชาวัคซีนที่`
   );
 
-  console.log(url);
-  const encodedUrl = encodeURIComponent(url + "?9");
-  console.log(encodedUrl);
-
   return (
     <div>
       <div className={styles.center}>
         <h2>อวดให้เพื่อนรู้สิว่าคุณได้วัคซีนแล้ว</h2>
-        <div className="flex justify-center align-center">
+        <div className={styles.flexCenter}>
           <div className="p-2">
             <FacebookShareButton url={url}>
               <FacebookIcon size={48} />

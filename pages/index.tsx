@@ -13,7 +13,7 @@ function getProbability(precision = 2) {
 }
 
 function getRandomVac() {
-  if (getProbability() <= 10) {
+  if (getProbability() <= 5) {
     return VACCINES[2];
   } else if (getProbability() <= 80) {
     return VACCINES[1];

@@ -1,3 +1,9 @@
 .center {
   text-align: center;
 }
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

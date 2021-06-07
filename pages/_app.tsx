@@ -24,15 +24,19 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
         />
 
-        <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
         <script
+          suppressHydrationWarning={true}
+          src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"
+        ></script>
+        <script
+          suppressHydrationWarning={true}
           dangerouslySetInnerHTML={{
             __html: `kofiWidgetOverlay.draw('chin8628', {
-              'type': 'floating-chat',
-              'floating-chat.donateButton.text': 'Support me',
-              'floating-chat.donateButton.background-color': '#00b9fe',
-              'floating-chat.donateButton.text-color': '#fff'
-            });`,
+                    'type': 'floating-chat',
+                    'floating-chat.donateButton.text': 'Support me',
+                    'floating-chat.donateButton.background-color': '#00b9fe',
+                    'floating-chat.donateButton.text-color': '#fff'
+                  });`,
           }}
         ></script>
       </Head>
