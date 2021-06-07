@@ -54,7 +54,7 @@ export default function Home({ ogImage }: Props) {
           content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={ogImage + "?236648297950"} />
+        <meta name="twitter:image" content={"https://gacha-vaxx.vercel.app" + ogImage + "?236648297950"} />
       </Head>
       <div className={styles.container}>
         <div className={styles.content}>
