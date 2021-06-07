@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "styles/Home.module.css";
 import ShareBtnGroup from "components/ShareBtnGroup/index";
 import { VACCINES } from "../constansts";
+import classnames from "classnames";
 
 type Vaccine = { label: string; photoUrl: string; cover: string; md5: string };
 
@@ -43,8 +44,8 @@ function shouldWaitLonger() {
   return minutes < 1 ? true : false;
 }
 
-function generateShareURI(host: string, vaxxParam: string) {
-  return `https://${host}/${vaxxParam}`;
+function generateShareURI(vaxxParam: string) {
+  return `https://gacha-vaxx.vercel.app/${vaxxParam}`;
 }
 
 export default function Home() {
@@ -157,9 +158,9 @@ export default function Home() {
               </h2>
             </div>
           )}
-          <ShareBtnGroup
-            url={generateShareURI(window.location.hostname, vac.md5)}
-          />
+          <span suppressHydrationWarning={true}>
+            {vac && <ShareBtnGroup url={generateShareURI(vac.md5)} vac={vac} />}
+          </span>
         </div>
       )}
     </div>

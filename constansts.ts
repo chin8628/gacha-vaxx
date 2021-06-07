@@ -1,4 +1,4 @@
-type Vaccine = { label: string; photoUrl: string; cover: string; md5: string };
+export type Vaccine = { label: string; photoUrl: string; cover: string; md5: string };
 
 export const VACCINES: Vaccine[] = [
   {

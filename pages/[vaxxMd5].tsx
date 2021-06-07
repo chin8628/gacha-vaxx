@@ -30,9 +30,9 @@ type Props = {
 export default function Home({ ogImage }: Props) {
   const router = useRouter();
 
-  // useEffect(() => {
-  //   window.location.href = "/";
-  // }, []);
+  useEffect(() => {
+    window.location.href = "/";
+  }, []);
 
   return (
     <div className={styles.content}>
@@ -54,13 +54,11 @@ export default function Home({ ogImage }: Props) {
           content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={"https://gacha-vaxx.vercel.app" + ogImage + "?236648297950"} />
+        <meta
+          name="twitter:image"
+          content={"https://gacha-vaxx.vercel.app" + ogImage + "?236648297950"}
+        />
       </Head>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <a href="/">กลับสู่หน้าแรก</a>
-        </div>
-      </div>
     </div>
   );
 }
