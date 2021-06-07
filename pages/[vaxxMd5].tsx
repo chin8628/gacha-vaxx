@@ -50,7 +50,7 @@ export default function Home({ ogImage }: Props) {
         <meta property="og:image" content={ogImage} />
 
         <meta
-          name="twitter:content"
+          name="twitter:title"
           content="มาสุ่มกาชากันเถอะ ดูกันว่าคุณจะได้วัคซีน covid-19 ยี่ห้ออะไร"
         />
         <meta name="twitter:card" content="summary_large_image" />
