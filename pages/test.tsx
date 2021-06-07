@@ -21,7 +21,7 @@ export default function Home() {
           content="test"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="/cover-pfizer.png" />
+        <meta name="twitter:image" content="https://gacha-vaxx.vercel.app/cover-az.png" />
       </Head>
     </div>
   );
