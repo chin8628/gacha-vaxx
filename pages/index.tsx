@@ -170,7 +170,7 @@ export default function Home() {
         <a
           href="https://github.com/chin8628/gacha-vaxx"
           target="_blank"
-          className="px-1"
+          className={styles.creditLink}
         >
           Github
         </a>
